@@ -1,23 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
-/*
-    Design
-    AppLayout
-        - Header Component
-            - Logo
-            - Nav Links
-            - Cart
-        - Body Component
-            - Search Area
-            - Restaurant Area
-                - Restaurant Cards
-                    - Image, Name of Restaurant, Cuisines, Delivery Time
-        - Footer Component
-            - Copyright
-            - Address
-            - Contact Info
- */
+import Header from "./components/Header.jsx";
+import Body from "./components/Body.jsx";
 
 // Data copied from Swiggy API
 const resData = [
@@ -795,67 +779,6 @@ const resData = [
         }
     }
 ]
-const Header = () => {
-    return (
-        <div className="header">
-            <div className="logo-container">
-                <img
-                    src="https://png.pngtree.com/template/20200610/ourmid/pngtree-food-delivery-logo-design-image_381319.jpg"
-                    className="logo"
-                />
-            </div>
-            <div className="nav-items">
-                <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    )
-};
-
-const Body = () => {
-    return (
-        <div className="body">
-            <div className="search">
-                Search
-            </div>
-            <div className="res-container">
-                { resData.map((restaurant) => {
-                    return ( <RestaurantCard resData={ restaurant } key={ restaurant.info.id }/> )
-                })
-                }
-            </div>
-        </div>
-    )
-};
-
-const RestaurantCard = ({ resData }) => {
-    const {
-        name,
-        cuisines,
-        avgRating,
-        cloudinaryImageId,
-        sla : {
-            deliveryTime
-        }
-    } = resData?.info;
-
-    return (
-        <div className="res-card">
-            <img
-                src={ "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId }
-                alt="res-logo"
-                className="res-logo"/>
-            <h3>{ name }</h3>
-            <h4>{ cuisines.join(', ') }</h4>
-            <h4>{ avgRating } Stars</h4>
-            <h4>{ deliveryTime } Minutes</h4>
-        </div>
-    )
-}
 
 const AppLayout = () => {
     return (

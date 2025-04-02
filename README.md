@@ -24,24 +24,24 @@ In the root of your project, create an `index.html` file with the following cont
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cool Restaurants App</title>
     <link rel="stylesheet" href="./index.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="./App.js"></script>
-  </body>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="src/App.jsx"></script>
+</body>
 </html>
 ```
 
 ### 4. Create `index.css`
 Create an `index.css` file in the root of your project. You can add your custom styles here.
 
-### 5. Create `App.js`
-Create an `App.js` file in the root of your project with the following content:
+### 5. Create `./src/App.jsx`
+Create an `App.jsx` file in the src folder of your project with the following content:
 
 ```javascript
 import React from "react";
@@ -63,9 +63,11 @@ root.render(<AppLayout />);
 Update your `package.json` file to include the following scripts:
 
 ```json
-"scripts": {
-  "start": "parcel index.html",
-  "build": "parcel build index.html"
+{
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  }
 }
 ```
 
@@ -85,5 +87,24 @@ npm run build
 The development server will now be running and you can view your app in the browser.
 
 ---
+
+Component Tree
+/*
+Design
+AppLayout
+- Header Component
+  - Logo
+  - Nav Links
+  - Cart
+- Body Component
+  - Search Area
+  - Restaurant Area
+    - Restaurant Cards
+      - Image, Name of Restaurant, Cuisines, Delivery Time
+- Footer Component
+  - Copyright
+  - Address
+  - Contact Info
+  */
 
 Happy coding! Enjoy building your React app to browse cool restaurants! 🍽️
