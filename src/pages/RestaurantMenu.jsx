@@ -28,14 +28,14 @@ const RestaurantMenu = () => {
             <p>{ cuisines.join(', ')} - { costForTwoMessage }</p>
             <h2>Menu</h2>
             <ul>
-                {
+                { items != null ?
                     items.map((item) => {
                      return (
                          <li key={ item?.card?.info?.id }>
                             {item?.card?.info?.name } - Rs. { (item?.card?.info?.price / 100) ||
                             (item?.card?.info?.variantsV2?.pricingModels[0]?.price / 100) }
                         </li>)
-                    })
+                    }) : "Failed to load menu 🥲"
                 }
             </ul>
         </div>
