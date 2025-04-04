@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router";
 import RestaurantCard from "./RestaurantCard.jsx";
 import Shimmer from "./Shimmer.jsx";
-import {Link} from "react-router";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus.jsx";
+import { SWIGGY_HOME_API } from "../utils/constants.jsx";
 
 const Body = () => {
     const [resData, setResData] = useState([]);
@@ -10,6 +12,8 @@ const Body = () => {
     const [filterOn, setFilterOn] = useState(false);
     const [searchText, setSearchText] = useState("");
 
+    const isOnline = useOnlineStatus();
+
     const showTopRestaurants = async (event) => {
         setFilterOn((previousState) => {
             return !previousState;
@@ -17,7 +21,7 @@ const Body = () => {
     };
 
     const searchRestaurant = () => {
-        const searchedRestaurants = searchText.trim().length > 0 ?allData.filter((res) => res.info.name.trim().toLowerCase().includes(searchText.trim().toLowerCase())) : allData;
+        const searchedRestaurants = searchText.trim().length > 0 ? allData.filter((res) => res.info.name.trim().toLowerCase().includes(searchText.trim().toLowerCase())) : allData;
         setResData(searchedRestaurants);
     }
 
@@ -37,19 +41,25 @@ const Body = () => {
         searchRestaurant();
     }, [searchText]);
 
+    // TODO 1: Create custom hook to fetch home page data.
     const fetchData = async () => {
-        const res = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const res = await fetch(SWIGGY_HOME_API);
         const json = await res.json();
-        const restaurants = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setAllData(restaurants);
         setResData(restaurants);
         setIsLoading((prev) => false);
     }
 
-    // conditional rendering
-    // if(isLoading) {
-    //     return (<Shimmer />);
-    // }
+    // conditional rendering - should be after all hook are called
+    if (!isOnline) {
+        return (
+            <div>
+                <h1>No Internet Connection</h1>
+                <p>Looks like you are offline! Please check your internet connection</p>
+            </div>
+        );
+    }
 
     return isLoading === true ?
         <Shimmer /> :
