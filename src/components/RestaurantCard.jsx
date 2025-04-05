@@ -1,5 +1,6 @@
 import React from "react";
 import { CDN_URL } from "../utils/constants";
+import restaurantMenu from "../pages/RestaurantMenu.jsx";
 
 const RestaurantCard = ({ resData }) => {
     const {
@@ -27,6 +28,18 @@ const RestaurantCard = ({ resData }) => {
 
 
     )
+};
+
+// adds a "New" banner to Restaurant Cards.
+export const withNewLabel = (RestaurantCard) => {
+    return (props) => {
+        return (
+            <div className="new-res">
+                <label>New</label>
+                <RestaurantCard {...props} />
+            </div>
+        )
+    }
 }
 
 export default RestaurantCard;

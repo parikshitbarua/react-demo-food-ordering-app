@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
-import RestaurantCard from "./RestaurantCard.jsx";
+import RestaurantCard, { withNewLabel } from "./RestaurantCard.jsx";
 import Shimmer from "./Shimmer.jsx";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus.jsx";
 import { SWIGGY_HOME_API } from "../utils/constants.jsx";
@@ -11,6 +11,8 @@ const Body = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [filterOn, setFilterOn] = useState(false);
     const [searchText, setSearchText] = useState("");
+
+    const NewRestaurant = withNewLabel(RestaurantCard);
 
     const isOnline = useOnlineStatus();
 
@@ -86,7 +88,14 @@ const Body = () => {
                 <div className="res-container">
                     {
                         resData.map((restaurant) => {
-                            return (<Link to={`restaurants/${restaurant.info.id}`} key={ restaurant.info.id }> <RestaurantCard resData={ restaurant } /> </Link>)
+                            return (
+                                <Link to={`restaurants/${restaurant.info.id}`} key={ restaurant.info.id }>
+                                    {
+                                        restaurant?.info?.isNewlyOnboarded ?
+                                        <NewRestaurant resData={ restaurant } /> :
+                                        <RestaurantCard resData={ restaurant } />
+                                    }
+                                </Link>)
                         })
                     }
                 </div>
