@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
 import { LOGO_URL } from "../utils/constants.jsx";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus.jsx";
+import UserContext from "../utils/context/UserContext.jsx";
 
 const Header = () => {
     const isOnline = useOnlineStatus();
-    console.log(isOnline)
+    const { loggedInUser } = useContext(UserContext);
+
     return (
         <div className="header">
             <div className="logo-container">
@@ -32,8 +34,11 @@ const Header = () => {
                         <Link to="/contact">Contact Us</Link>
                     </li>
                     <li>
-                        <Link to="/cart">Cart</Link>
+                        { loggedInUser }
                     </li>
+                    {/*<li>*/}
+                    {/*    <Link to="/cart">Cart</Link>*/}
+                    {/*</li>*/}
                 </ul>
             </div>
         </div>

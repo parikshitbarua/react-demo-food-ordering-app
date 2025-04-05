@@ -29,6 +29,8 @@
     background-color: #f0f0f0;
     padding: 5px;
     width: 250px;
+    position: relative;
+    z-index: 0; /* Ensure the card is beneath the label */
 }
 
 .res-card:hover {
@@ -70,3 +72,113 @@ a:link, a:visited {
     text-decoration: none;
     color: black;
 }
+
+.new-res {
+    position: relative; /* This ensures that the label can be positioned relative to the container */
+}
+
+.new-res label {
+    position: absolute; /* Absolutely position the label */
+    top: 10px; /* Distance from the top of the container */
+    left: 30px; /* Distance from the left of the container */
+    background-color: rgba(255, 0, 0, 0.7); /* Optional: A background color to make the label stand out */
+    color: white; /* Text color for the label */
+    padding: 5px 10px; /* Padding around the label */
+    font-weight: bold; /* Make the label bold */
+    font-size: 16px; /* Font size */
+    z-index: 1; /* Ensure the label appears on top of the card */
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.menu-category {
+    margin: 15px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Hide anything that overflows the container */
+}
+
+.category-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.category-title:hover {
+    background-color: #e0e0e0; /* Highlight the title on hover */
+}
+
+.category-title span {
+    font-size: 1.2em;
+}
+
+.category-title .arrow {
+    transition: transform 0.3s ease;
+}
+
+.category-title.open .arrow {
+    transform: rotate(180deg); /* Rotate the arrow when expanded */
+}
+
+.menu-category-item {
+    padding: 15px;
+    background-color: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.menu-category-item:last-child {
+    border-bottom: none;
+}
+
+.menu-category-item:hover {
+    background-color: #f0f0f0; /* Hover effect for items */
+}
+
+
+.item-image {
+    flex-shrink: 0; /* Prevent the image from shrinking */
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container without distorting */
+    border-radius: 8px;
+}
+
