@@ -182,3 +182,15 @@ a:link, a:visited {
     border-radius: 8px;
 }
 
+.add-item-button {
+    margin-left: 5px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-item-button:hover {
+    background-color: #333;
+}
+
