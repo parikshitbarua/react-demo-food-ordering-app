@@ -9,6 +9,10 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import RestaurantMenu from "./pages/RestaurantMenu.jsx";
 import appStore from "./utils/store/appStore.jsx";
+<<<<<<< HEAD
+=======
+import Cart from "./pages/Cart.jsx";
+>>>>>>> ep12
 
 // lazy load the Grocery module.
 const Grocery = lazy(() => import("./components/Grocery.jsx"));
@@ -50,6 +54,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"/restaurants/:resId",
                 element: <RestaurantMenu />
+            },
+            {
+                path: "/cart",
+                element: <Cart />
             }
         ],
         errorElement: <Error />
