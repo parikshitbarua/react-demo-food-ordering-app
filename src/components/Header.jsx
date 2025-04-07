@@ -37,14 +37,13 @@ const Header = () => {
                         <Link to="/contact">Contact Us</Link>
                     </li>
                     <li>
-                        Cart ({ cartItems.length })
+                        <Link to="/cart">
+                            Cart ({ cartItems.length })
+                        </Link>
                     </li>
                     <li>
                         { loggedInUser }
                     </li>
-                    {/*<li>*/}
-                    {/*    <Link to="/cart">Cart</Link>*/}
-                    {/*</li>*/}
                 </ul>
             </div>
         </div>

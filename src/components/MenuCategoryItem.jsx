@@ -1,11 +1,15 @@
 import { useDispatch } from "react-redux";
-import { addItem } from "../utils/store/cartSlice.jsx";
+import {addItem, removeItem} from "../utils/store/cartSlice.jsx";
 import { CDN_URL } from "../utils/constants.jsx";
 
-const MenuCategoryItem = ({ menuItem }) => {
+const MenuCategoryItem = ({ menuItem, isCart= false }) => {
     const dispatch = useDispatch();
-    const handleAddItem = () => {
-        dispatch(addItem("pizza"));
+    const handleAddItem = (item) => {
+        dispatch(addItem(item));
+    }
+
+    const handleRemoveItem = (item) => {
+        dispatch(removeItem(item));
     }
     return (
         <div className="menu-item">
@@ -17,7 +21,8 @@ const MenuCategoryItem = ({ menuItem }) => {
                         ₹ {menuItem?.card?.info?.price / 100 || menuItem?.card?.info?.defaultPrice / 100}
                     </span>
                     <span>
-                    <button className="add-item-button" onClick={handleAddItem}>+ Add</button>
+                    {!isCart &&<button className="add-item-button" onClick={ () => handleAddItem(menuItem)}>+ Add</button>}
+                    {isCart &&<button className="add-item-button" onClick={ () => handleRemoveItem(menuItem)}>+ Remove</button>}
                     </span>
                 </p>
             </div>
