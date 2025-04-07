@@ -37,13 +37,9 @@ const Header = () => {
                         <Link to="/contact">Contact Us</Link>
                     </li>
                     <li>
-<<<<<<< HEAD
-                        Cart ({ cartItems.length })
-=======
                         <Link to="/cart">
                             Cart ({ cartItems.length })
                         </Link>
->>>>>>> ep12
                     </li>
                     <li>
                         { loggedInUser }
